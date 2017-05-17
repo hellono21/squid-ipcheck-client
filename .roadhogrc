@@ -1,0 +1,24 @@
+{
+  "entry": "src/index.js",
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:4000",
+      "changeOrigin": true
+    }
+  },
+  "env": {
+    "development": {
+      "extraBabelPlugins": [
+        "dva-hmr",
+        "transform-runtime",
+        ["import", { "libraryName": "antd", "style": "css" }]
+      ]
+    },
+    "production": {
+      "extraBabelPlugins": [
+        "transform-runtime",
+        ["import", { "libraryName": "antd", "style": "css" }]
+      ]
+    }
+  }
+}
