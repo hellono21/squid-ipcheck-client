@@ -4,7 +4,7 @@
 
 import request from '../utils/request';
 
-const baseUrl = 'http://101.200.209.250:4000'
+const baseUrl = ''
 
 export async function getClientInfo() {
   return request(`${baseUrl}/api/ip`);

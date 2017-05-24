@@ -3,7 +3,7 @@ import { connect } from 'dva';
 import { Button, Card } from 'antd'
 import styles from './IndexPage.css';
 
-function IndexPage({ location, dispatch, app }) {
+function IndexPage({ location, dispatch, app, loading }) {
   const { client, commitButtonLoading } = app;
   function handleCommit() {
     dispatch({
@@ -14,8 +14,8 @@ function IndexPage({ location, dispatch, app }) {
   return (
     <div className={styles.normal}>
       <h1>你的IP：{client.ip}</h1>
-      <Button type="primary" size="large" onClick={handleCommit} loading={commitButtonLoading}>
-        确认提交IP
+      <Button type="primary" size="large" onClick={handleCommit} loading={loading.global}>
+        确认
       </Button>
     </div>
   );
