@@ -19,10 +19,10 @@ export default {
   },
   effects: {
     *queryClient({ payload }, { call, put }) {
-      const data = yield call(getClientInfo);
+      const { data } = yield call(getClientInfo);
       yield put({
         type: 'queryClientSuccess',
-        payload: data.data,
+        payload: data,
       });
     },
     *commitIP({ payload }, { call, put }){

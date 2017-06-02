@@ -2,20 +2,23 @@
  * Created by ccc on 5/16/17.
  */
 
-import request from '../utils/request';
+// import request from '../utils/request';
+import {request, config} from '../utils';
 
-const baseUrl = ''
+const { api } = config;
+const { clientInfo } = api;
 
 export async function getClientInfo() {
-  return request(`${baseUrl}/api/ip`);
+  return request({
+    url: clientInfo,
+    method: 'get',
+  });
 }
 
 export async function commitClientIP(params) {
-  return request(`${baseUrl}/api/ip`, {
+  return request({
+    url: clientInfo,
     method: 'post',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(params),
+    data: params,
   });
 }
