@@ -7,9 +7,15 @@ import { Helmet } from 'react-helmet';
 import { config } from '../utils';
 import { Layout } from '../components';
 
-const { styles } = Layout;
+const { styles, Header } = Layout;
 
-function App({ loading, children }) {
+function App({ app, loading, children, dispatch, location }) {
+  const { account } = app;
+  const headerProps = {
+    account,
+    location,
+    logout: () => { dispatch({ type: 'app/logout' }); },
+  };
   return (
     <div>
       <Helmet>
@@ -18,6 +24,7 @@ function App({ loading, children }) {
       </Helmet>
       <div className={styles.layout}>
         <div className={styles.main}>
+          <Header {...headerProps} />
           <div className={styles.container}>
             <div className={styles.content}>
               {children}
@@ -29,4 +36,4 @@ function App({ loading, children }) {
   );
 }
 
-export default connect(({ loading }) => ({ loading }))(App);
+export default connect(({ app, loading }) => ({ app, loading }))(App);

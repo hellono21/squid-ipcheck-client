@@ -7,14 +7,24 @@ import './index.css';
 // 1. Initialize
 const app = dva({
   history: browserHistory,
-  onError(error) {
-    message.error(error.message)
+  onError(error, dispatch) {
+    const { status, data } = error.response;
+    switch ( status ) {
+      case 401:
+        message.error('未登录');
+        break;
+      case 403:
+        message.error('用户名密码不正确');
+        break;
+      default:
+        message.error(data.message);
+    }
   },
 });
 
 // 2. Plugins
 // app.use({});
-app.use(createLoading());
+app.use(createLoading({ effects: true }));
 
 // 3. Model
 // app.model(require('./models/example'));

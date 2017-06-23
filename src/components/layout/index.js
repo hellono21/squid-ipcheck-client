@@ -3,5 +3,9 @@
  */
 
 import styles from './layout.less';
+import Header from './Header';
 
-export { styles };
+export {
+  styles,
+  Header,
+};

@@ -19,31 +19,7 @@ function checkStatus(response) {
 }
 
 function fetch(options) {
-  const {
-    method = 'get',
-    data,
-    url,
-  } = options;
-
-  switch (method.toLowerCase()) {
-    case 'get':
-      return axios.get(url, {
-        params: data,
-      });
-    case 'delete':
-      return axios.delete(url, {
-        data,
-      });
-    case 'post':
-      return axios.post(url, data);
-    case 'put':
-      return axios.put(url, data);
-    case 'patch':
-      return axios.patch(url, data);
-    default:
-      return axios(options);
-  }
-
+  return axios(options);
 }
 
 /**
@@ -57,6 +33,6 @@ export default function request(options) {
   return fetch(options)
     // .then(checkStatus)
     // .then(parseJSON)
-    .then(data => ( data ));
-    // .catch(err => ({ err }));
+    .then(data => ( data ))
+  ;
 }

@@ -22,14 +22,93 @@ function RouterConfig({ history, app }) {
       childRoutes: [
         {
           path: 'ip',
-          getComponent (nextState, cb) {
+          getComponent(nextState, cb) {
             require.ensure([], (require) => {
               // registerModel(app, require('./models/ip'));
               cb(null, require('./routes/ip/'));
             }, 'ip');
           },
         },
+        {
+          path: 'help',
+          getComponent(nextState, cb) {
+            require.ensure([], (require) => {
+              // registerModel(app, require('./models/ip'));
+              cb(null, require('./routes/help/'));
+            }, 'help');
+          },
+        },
+        {
+          path: 'dashboard',
+          getComponent(nextState, cb) {
+            require.ensure([], (require) => {
+              // registerModel(app, require('./models/ip'));
+              cb(null, require('./routes/dashboard/'));
+            }, 'dashboard');
+          },
+        },
       ],
+    },
+    {
+      path: '/auth',
+      getComponent(nextState, cb) {
+        require.ensure([], (require) => {
+          //registerModel(app, require('./models/auth'));
+          cb(null, require('./routes/auth/'));
+        }, 'auth');
+      },
+      getIndexRoute(nextState, cb) {
+        require.ensure([], (require) => {
+          registerModel(app, require('./models/auth'));
+          cb(null, { component: require('./routes/auth/start') });
+        }, 'start');
+      },
+      childRoutes: [
+        {
+          path: 'start',
+          getComponent(nextState, cb) {
+            require.ensure([], (require) => {
+              //registerModel(app, require('./models/auth'));
+              cb(null, require('./routes/auth/start'));
+            }, 'start');
+          },
+        },
+        {
+          path: 'invitation',
+          getComponent(nextState, cb) {
+            require.ensure([], (require) => {
+              registerModel(app, require('./models/auth'));
+              cb(null, require('./routes/auth/invitation'));
+            }, 'invitation');
+          },
+        },
+        {
+          path: 'login',
+          getComponent(nextState, cb) {
+            require.ensure([], (require) => {
+              registerModel(app, require('./models/auth'));
+              cb(null, require('./routes/auth/login'));
+            }, 'login');
+          },
+        },
+
+      ],
+    },
+    {
+      path: 'register',
+      getComponent(nextState, cb) {
+        require.ensure([], (require) => {
+          cb(null, require('./routes/auth/register'));
+        }, 'register');
+      },
+    },
+    {
+      path: '*',
+      getComponent(nextState, cb) {
+        require.ensure([], (require) => {
+          cb(null, require('./routes/error/'));
+        }, 'error');
+      },
     },
   ];
 

@@ -3,9 +3,17 @@
  */
 
 export default {
-  name: 'ZMKM Board',
+  name: '芝麻开门',
+  logo: '/logo.png',
   apiBaseUrl: '/api',
   api: {
     clientInfo: '/ip',
+    whiteips: '/whiteips',
+    users: '/users',
+    token: '/token',
+    invitations: '/invitations',
+  },
+  storageKey: {
+    token: 'ZMKM_TOKEN',
   },
 };

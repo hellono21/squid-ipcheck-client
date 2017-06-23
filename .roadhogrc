@@ -2,7 +2,7 @@
   "entry": "src/index.js",
   "proxy": {
     "/api": {
-      "target": "http://localhost:4000",
+      "target": "http://localhost:3000",
       "changeOrigin": true
     }
   },
@@ -11,14 +11,15 @@
       "extraBabelPlugins": [
         "dva-hmr",
         "transform-runtime",
-        ["import", { "libraryName": "antd", "style": "css" }]
+        ["import", { "libraryName": "antd", "style": true }]
       ]
     },
     "production": {
       "extraBabelPlugins": [
         "transform-runtime",
-        ["import", { "libraryName": "antd", "style": "css" }]
+        ["import", { "libraryName": "antd", "style": true }]
       ]
     }
-  }
+  },
+  "theme": "./theme.js"
 }
